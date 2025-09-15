@@ -1,0 +1,4 @@
+Starting server...
+Server started
+{"method":"notifications/resources/list_changed","jsonrpc":"2.0"}
+{"method":"notifications/tools/list_changed","jsonrpc":"2.0"}

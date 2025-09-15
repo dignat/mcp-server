@@ -1,0 +1,1 @@
+# Note: the mcp server config json - mcp.json is saved in ~/.aws/amazonq
