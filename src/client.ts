@@ -1,14 +1,19 @@
 import {Client} from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { ListPromptsResultSchema, ListToolsRequestSchema, ListToolsResultSchema } from '@modelcontextprotocol/sdk/types.js';
 
 const transposrt = new StdioClientTransport({
     command: 'node',
-    args: ['index.js']
+    args: ['build/index.js']
 });
 
 const client = new Client({
     name: 'demo-client',
     version: '1.0.0'
+}
+,
+{
+    capabilities: {},
 });
 
 await client.connect(transposrt);
@@ -20,3 +25,13 @@ const resource = await client.readResource({
 });
 
 console.log(resource.contents[0].text)
+
+const response = await client.request(
+    {method: "tools/list"},
+    ListToolsResultSchema
+)
+ console.log(
+      "\nConnected to server with tools:",
+      response.tools.map((tool:any) => tool.name)
+    );
+
