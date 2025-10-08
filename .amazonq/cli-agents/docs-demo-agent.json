@@ -1,0 +1,8 @@
+{
+  "name": "docs-demo-agent",
+  "description": "Agent with trusted docs-demo MCP tools",
+  "allowedTools": [
+    "@docs-demo/analyze_csv",
+    "@docs-demo/flow-chart"
+  ]
+}
