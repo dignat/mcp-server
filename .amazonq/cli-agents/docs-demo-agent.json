@@ -1,8 +1,22 @@
 {
   "name": "docs-demo-agent",
   "description": "Agent with trusted docs-demo MCP tools",
+  "mcpServers": {
+    "docs-demo": {
+      "command": "node",
+      "args": ["./build/index.js"]
+    }
+  },
+  "tools": [
+    "@docs-demo/analyze_csv",
+    "@docs-demo/flow-chart",
+    "@docs-demo/create-mermaid-file"
+  ],
+  "prompt": "You are an expert AWS solution architect specialist",
   "allowedTools": [
     "@docs-demo/analyze_csv",
-    "@docs-demo/flow-chart"
+    "@docs-demo/flow-chart",
+    "@docs-demo/create-mermaid-file",
+    "@fetch"
   ]
 }

@@ -27,11 +27,12 @@ const resource = await client.readResource({
 console.log(resource.contents[0].text)
 
 const response = await client.request(
-    {method: "tools/list"},
-    ListToolsResultSchema
+    {method: "prompts/list"},
+    ListPromptsResultSchema
 )
  console.log(
-      "\nConnected to server with tools:",
-      response.tools.map((tool:any) => tool.name)
+      "\nConnected to server with prompts:",
+      response.prompts.map((prompt:any) => prompt.name)
     );
+
 

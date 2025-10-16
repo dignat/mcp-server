@@ -23,7 +23,8 @@ const server = new Server({
 const PROMPTS = {
     "create-mermaid-file": {
         name: 'create-mermaid-file',
-        description: 'Create mermaid file',
+        description: `Create mermaid file with or without provided fileName or dataToWrite. If fileName or dataTowrite is not
+         provided ask what type of content should mermaid file contain and propose a fileName`,
         arguments: [
             {
                 name: 'fileName',
@@ -37,7 +38,8 @@ const PROMPTS = {
     },
     "flow-chart": {
         name: 'flow-chart',
-        description: 'Creates a png file from a mermaid file if exists in ./src/docs directory',
+        description: `Creates a png file from a mermaid file if mermaid file exists in ./src/docs directory. If it does not exists
+            use create-mermaid-file to create a mermaid file`,
         arguments: [
             {
                 name: 'input',
@@ -69,10 +71,17 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
                     role: 'user',
                     content: {
                         type: 'text',
-                        text: `Create mermaid file with ${request.params.arguments?.fileName} as first argument and 
-                    ${request.params.arguments?.dataToWrite} as a second parameter`
+                        text: `Could you create a mermaid file for a given architecture design pattern or idea?`
                     }
-                }
+                },
+                {
+                    role: 'assistant',
+                    content: {
+                        type: 'text',
+                        text: `Sure thing. Let me know what type of design architecture pattern you have in mind, or about what type 
+                        of architecture design idea you are thinking.`
+                    }
+                },
             ]
         };
     }
@@ -203,12 +212,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const inputExtension = inputParam.split('.').pop();
             const outputExtension = outputParam.split('.').pop();
             input = inputExtension === 'md' || inputExtension === 'mmd' ? inputParam : `${inputParam}.mmd`;
-            output = outputExtension === 'png' ? `./src/assets/${outputParam}` : `./src/assets/${outputParam.replace(/\s/g, "").toLowerCase()}.png`;
+            output = outputExtension === 'png' ? `${outputParam}.png` : `${outputParam.replace(/\s/g, "").toLowerCase()}.png`;
         }
         else {
-            input = `./src/docs/${useMermaidFileName}`;
+            input = './src/docs/' + `${useMermaidFileName}`;
             useMermaidFileName.split('.').pop();
-            output = `./src/assets/${useMermaidFileName}.png`;
+            output = './src/assets/' + `${useMermaidFileName}.png`;
         }
         const checkFileExtension = input.split('.').pop();
         if (input.length && (checkFileExtension === 'mmd' || checkFileExtension === 'md')) {
@@ -219,7 +228,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         return {
             content: [{
-                    text: `We have a file in ./src/assets/${output}`,
+                    text: `I have created a file in ./src/assets/${output}`,
                     type: 'text'
                 }]
         };
