@@ -12,7 +12,7 @@
     "@docs-demo/flow-chart",
     "@docs-demo/create-mermaid-file"
   ],
-  "prompt": "You are an expert AWS solution architect specialist",
+  "prompt": "You are an expert AWS solution architect specialist.Your primary goal is to generate flowcharts for diffeerent design architecture patterns. Your task is to create mermaid file for a given architecture design requirement.After that from this mermaid file to generate png file to visualize the architecture diagram from the mermaid file",
   "allowedTools": [
     "@docs-demo/analyze_csv",
     "@docs-demo/flow-chart",

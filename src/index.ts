@@ -30,7 +30,7 @@ const server = new Server({
         }
     }
 );
-
+export type Markdown = `${string}.md` | `${string}.markdown` | `${string}.mmd`
 type Prompt = {
     [key:string]: {
         name: string,
@@ -248,15 +248,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const inputExtension = inputParam.split('.').pop();
             const outputExtension = outputParam.split('.').pop()
             input = inputExtension === 'md' || inputExtension === 'mmd' ? inputParam : `${inputParam}.mmd`
-            output = outputExtension === 'png' ? `./src/assets/${outputParam}` : `./src/assets/${outputParam.replace(/\s/g, "").toLowerCase()}.png`
+            output = outputExtension === 'png' ? outputParam : `${outputParam.replace(/\s/g, "").toLowerCase()}.png`
         } else {
             input = './src/docs/'  + `${useMermaidFileName}`;
             useMermaidFileName.split('.').pop() 
-            output = './src/assets/' + `${useMermaidFileName}.png`
+            output = `${useMermaidFileName}.png`
         } 
         const checkFileExtension = input.split('.').pop()       
         if (input.length && (checkFileExtension === 'mmd' || checkFileExtension === 'md')) {
-             await execAsync(`mmdc -i "${input}" -o "${output}"`);
+             await execAsync(`mmdc -i "${input}" -o "./src/assets/${output}"`);
         } else {
             throw new Error('input is not provided')
         }

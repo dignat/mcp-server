@@ -6,7 +6,7 @@ export async function checkFile(filePath: string): Promise<boolean> {
         (await fs.stat(filePath)).isFile();
         flag = true
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
    return flag
 }
