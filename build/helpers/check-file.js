@@ -6,7 +6,8 @@ export async function checkFile(filePath) {
         flag = true;
     }
     catch (error) {
-        console.error(error);
+        console.error(`We need to handle the error, by creating the file ${error}`);
+        return false;
     }
     return flag;
 }

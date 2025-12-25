@@ -38,7 +38,9 @@ const PROMPTS = {
     },
     "flow-chart": {
         name: 'flow-chart',
-        description: `Creates a png file from a mermaid file if mermaid file exists in ./src/docs directory. If it does not exists
+        description: `Creates a png file from a mermaid file using mermaid syntax
+            using the Mermaid syntax inside a fenced code block with the mermaid language identifier
+            if mermaid file exists in ./src/docs directory. If it does not exists
             use create-mermaid-file to create a mermaid file`,
         arguments: [
             {
@@ -133,7 +135,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
         tools: [{
                 name: 'flow-chart',
-                description: 'Display flow chart with mermaid',
+                description: 'Generate mermaid diagram flowchart from mermaid code and outputs a flowchart with .png extension',
                 inputSchema: {
                     type: 'object',
                     properties: {

@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "docs-demo": {
+      "command": "node",
+      "args": [
+        "/Users/denisignatova/Desktop/mcp-server/build/index.js"
+],
+"cwd": "/Users/denisignatova/Desktop/mcp-server",
+"env": {
+    "NODE_ENV": "production"
+}
+    }
+  }
+}
