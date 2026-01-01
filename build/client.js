@@ -98,17 +98,18 @@ const messages = [
      1. Type of architecture.
      2. File name.`,
     },
-    // {role: "assistant", content: `I understand. I will neeed some more information.
-    //     1. What type of architecture?
-    //     2.Cloud based or on-premises based?
-    //     3. If Cloud based type:
-    //         3.1 AWS based?
-    //         3.2 Azure based?
-    //         3.3 CGP based?`},
-    //     {role: "user",
-    //         content: "I am interested in AWS design serveless architecture, that includes AWS S3, AWS Lambda, API Gateway. Also could you name the file serveless-design with .md extension , please?"},
-    // {role: "assistant",
-    //     content: `Of course. Let me see what ttols I have. I can use create-mermaid-file to generate a mermaid file for your architecture design.`}
+    { role: "user", content: "Hello!" },
+    { role: "assistant", content: `I understand. I will neeed some more information.
+      1. What type of architecture?
+      2.Cloud based or on-premises based?
+      3. If Cloud based type:
+          3.1 AWS based?
+          3.2 Azure based?
+          3.3 CGP based?` },
+    { role: "user",
+        content: "I am interested in AWS design serveless architecture, that includes AWS S3, AWS Lambda, API Gateway. Also could you name the file serveless-design with .md extension , please?" },
+    { role: "assistant",
+        content: `Of course. Let me see what ttols I have. I can use create-mermaid-file to generate a mermaid file for your architecture design.` }
 ];
 toolsResponse.tools.map((tool) => {
     toolsFromMCP.push({
@@ -148,7 +149,7 @@ async function agentLoop() {
             You will use create-mermaid-file function to create mermaid diagram file with .md extension always using 
             a fenced code block with the mermaid language identifier, for an architecture design the user will specify and you will use the 
             file name of created mermaid diagram file to generate a flowchart by using flow-chart function. The input for flow-chart will be the file name
-            and output will be a png file.
+            and output will be a png file. Also make sure the mermaid diagram has a correct syntax.
             Ask the user to provide:
             1. Type of architecture.
             2. File name.

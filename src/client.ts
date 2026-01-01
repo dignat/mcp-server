@@ -145,17 +145,18 @@ const messages: Message[] = [
      1. Type of architecture.
      2. File name.`,
   },
-  // {role: "assistant", content: `I understand. I will neeed some more information.
-  //     1. What type of architecture?
-  //     2.Cloud based or on-premises based?
-  //     3. If Cloud based type:
-  //         3.1 AWS based?
-  //         3.2 Azure based?
-  //         3.3 CGP based?`},
-  //     {role: "user",
-  //         content: "I am interested in AWS design serveless architecture, that includes AWS S3, AWS Lambda, API Gateway. Also could you name the file serveless-design with .md extension , please?"},
-  // {role: "assistant",
-  //     content: `Of course. Let me see what ttols I have. I can use create-mermaid-file to generate a mermaid file for your architecture design.`}
+  {role: "user", content: "Hello!"},
+  {role: "assistant", content: `I understand. I will neeed some more information.
+      1. What type of architecture?
+      2.Cloud based or on-premises based?
+      3. If Cloud based type:
+          3.1 AWS based?
+          3.2 Azure based?
+          3.3 CGP based?`},
+      {role: "user",
+          content: "I am interested in AWS design serveless architecture, that includes AWS S3, AWS Lambda, API Gateway. Also could you name the file serveless-design with .md extension , please?"},
+  {role: "assistant",
+      content: `Of course. Let me see what ttols I have. I can use create-mermaid-file to generate a mermaid file for your architecture design.`}
 ];
 toolsResponse.tools.map((tool: any) => {
   toolsFromMCP.push({
