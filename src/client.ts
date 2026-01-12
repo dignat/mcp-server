@@ -172,7 +172,7 @@ toolsResponse.tools.map((tool: any) => {
     },
   });
 });
-//console.log(tools)
+
 async function agentLoop() {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -243,8 +243,8 @@ async function agentLoop() {
         });
       }
       messages.push(
+        { role: "assistant", content: content },
         { role: "user", content: userInput },
-        { role: "assistant", content: content }
       );
       askQuestion();
       if (!toolCalls.length) {
